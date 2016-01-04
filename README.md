@@ -1,12 +1,29 @@
 # Ember-leaflet-marker-cluster
 
-This README outlines the details of collaborating on this Ember addon.
+Provides Beautiful Animated Marker Clustering functionality for [Ember-Leaflet](http://ember-leaflet.com), an Ember Addon for [Leaflet](http://leafletjs.com) interactive maps.
+
+This plugin is based on a JS library [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) and basically wraps it into ember component for usage in HTMLbars templates.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+* `ember install ember-leaflet-marker-cluster`
+
+## Using the plugin
+
+```handlebars
+{{#leaflet-map lat=lat lng=lng zoom=zoom}}
+
+  {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+  {{#marker-cluster-layer}}
+	  {{#each markers as |marker|}}
+	    {{#marker-layer location=marker.location}}
+			  <h3>{{marker.title}}</h3>
+			  {{marker.description}}
+			{{/marker-layer}}
+	  {{/each}}
+  {{/marker-cluster-layer}}
+{{/leaflet-map}}
+```
 
 ## Running
 
