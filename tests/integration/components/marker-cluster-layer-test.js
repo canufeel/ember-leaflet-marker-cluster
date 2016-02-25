@@ -43,3 +43,19 @@ test('it renders', function(assert) {
 
   assert.equal(cluster._childLayers.length, 1);  
 });
+
+test('test leaflet marker cluster options are set on marker cluster layer', function(assert) {
+  this.set('markerCenter', locations.nyc);
+  this.set('icon', L.divIcon({className: 'my-div-icon'}));
+
+  // this maxZoom property here is for purpose. Otherwise
+  // Leaflet.markercluster causes some weird behaviour on addlayer.
+  this.render(hbs`
+    {{#leaflet-map zoom=zoom center=center maxZoom=25}}
+      {{#marker-cluster-layer maxClusterRadius=100}}
+        {{marker-layer location=markerCenter icon=icon}}
+      {{/marker-cluster-layer}}
+    {{/leaflet-map}}
+    `);
+  assert.equal(cluster._layer.options.maxClusterRadius, 100);  
+});
