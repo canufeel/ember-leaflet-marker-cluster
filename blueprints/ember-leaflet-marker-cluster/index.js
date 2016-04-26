@@ -16,6 +16,6 @@ module.exports = {
   },
 
   afterInstall: function(options) {
-   return this.addBowerPackageToProject('leaflet.markercluster', '~0.4.0-hotfix.1');
+   return this.addBowerPackageToProject('leaflet.markercluster', '~0.5.0');
   }
 };
