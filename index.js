@@ -3,6 +3,7 @@
 
 module.exports = {
   name: 'ember-leaflet-marker-cluster',
+
   included: function(app){
   	app.import(app.bowerDirectory + '/leaflet.markercluster/dist/leaflet.markercluster.js');
   	app.import(app.bowerDirectory + '/leaflet.markercluster/dist/MarkerCluster.css');
