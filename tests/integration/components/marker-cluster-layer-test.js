@@ -41,7 +41,7 @@ test('it renders', function(assert) {
     {{/leaflet-map}}
     `);
 
-  assert.equal(cluster._childLayers.length, 1);  
+  assert.equal(cluster.childComponents.length, 1);
 });
 
 test('test leaflet marker cluster options are set on marker cluster layer', function(assert) {
