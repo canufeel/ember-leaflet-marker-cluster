@@ -14,17 +14,16 @@ Please be advised that for some particular reason Leaflet Marker Cluster breaks 
 
 ```handlebars
 {{#leaflet-map lat=lat lng=lng zoom=zoom}}
-
   {{tile-layer url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
   {{#marker-cluster-layer}}
-	  {{#each markers as |marker|}}
-	    {{#marker-layer location=marker.location}}
-	      {{#popup-layer}}
-			    <h3>{{marker.title}}</h3>
-			    {{marker.description}}
-			  {{/popup-layer}}  
-			{{/marker-layer}}
-	  {{/each}}
+    {{#each markers as |marker|}}
+      {{#marker-layer location=marker.location}}
+        {{#popup-layer}}
+          <h3>{{marker.title}}</h3>
+          {{marker.description}}
+        {{/popup-layer}}  
+      {{/marker-layer}}
+    {{/each}}
   {{/marker-cluster-layer}}
 {{/leaflet-map}}
 ```
