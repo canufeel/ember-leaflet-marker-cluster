@@ -19,8 +19,10 @@ Please be advised that for some particular reason Leaflet Marker Cluster breaks 
   {{#marker-cluster-layer}}
 	  {{#each markers as |marker|}}
 	    {{#marker-layer location=marker.location}}
-			  <h3>{{marker.title}}</h3>
-			  {{marker.description}}
+	      {{#popup-layer}}
+			    <h3>{{marker.title}}</h3>
+			    {{marker.description}}
+			  {{/popup-layer}}  
 			{{/marker-layer}}
 	  {{/each}}
   {{/marker-cluster-layer}}
