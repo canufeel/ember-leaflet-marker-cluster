@@ -13,6 +13,7 @@ This plugin is based on a JS library [Leaflet.markercluster](https://github.com/
 Please be advised that for some particular reason Leaflet Marker Cluster breaks if the component loads with some markers inside the marker cluster in place without `maxZoom` property provided on `{{leaflet-map}}` like so: `{{leaflet-map maxZoom=25}}`.
 
 ```handlebars
+
 {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
 
   {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
