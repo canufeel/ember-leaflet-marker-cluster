@@ -1,7 +1,10 @@
 import BaseLayer from 'ember-leaflet/components/base-layer';
 import { ParentMixin } from 'ember-composability-tools';
+import layout from '../templates/marker-cluster-layer';
 
 export default BaseLayer.extend(ParentMixin, {
+	layout,
+
 	leafletOptions: [
   	'showCoverageOnHover', 'zoomToBoundsOnClick', 'spiderfyOnMaxZoom', 'removeOutsideVisibleBounds',
   	'animate', 'animateAddingMarkers', 'disableClusteringAtZoom', 'maxClusterRadius', 'polygonOptions',
