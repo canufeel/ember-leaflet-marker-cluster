@@ -1,4 +1,8 @@
 
+## 0.1.1
+
+- Use `"ember-leaflet": "3.0.11"` and make `leaflet.markercluster` an npm dependency.
+
 ## 0.1.0
 
 Fastboot support
