@@ -1,43 +1,72 @@
 /* jshint node: true */
 'use strict';
 
-var Funnel = require('broccoli-funnel');
-var mergeTrees = require('broccoli-merge-trees');
-var path = require('path');
+const Funnel = require('broccoli-funnel');
+const mergeTrees = require('broccoli-merge-trees');
+const BroccoliDebug = require('broccoli-debug');
+const fastbootTransform = require('fastboot-transform');
+const path = require('path');
 
 module.exports = {
   name: 'ember-leaflet-marker-cluster',
 
   included(app) {
+    let vendor = this.treePaths.vendor;
+    let dir = `${vendor}/leaflet.markercluster`;
 
-    if (!isFastBoot()) {
-
-      const vendor = this.treePaths.vendor;
-
-      // Main modules
-      app.import(vendor + '/leaflet.markercluster/leaflet.markercluster.js');
-      app.import(vendor + '/leaflet.markercluster/MarkerCluster.css');
-      app.import(vendor + '/leaflet.markercluster/MarkerCluster.Default.css');
-
-    }
+    // Main modules
+    app.import(`${dir}/leaflet.markercluster.js`);
+    app.import(`${dir}/MarkerCluster.css`);
+    app.import(`${dir}/MarkerCluster.Default.css`);
 
     return this._super.included.apply(this, arguments);
   },
 
   treeForVendor(vendorTree) {
-    var trees = [];
+    let debugTree = BroccoliDebug.buildDebugCallback(this.name),
+        trees = [];
 
     if (vendorTree) {
-      trees.push(vendorTree);
+      trees.push(
+        debugTree(vendorTree, 'vendorTree')
+      );
     }
 
-    trees.push(moduleToFunnel('leaflet.markercluster', {
-      include: ['*.js', '*.css'],
-      destDir: 'leaflet.markercluster'
-    }));
+    let js = fastbootTransform(
+      moduleToFunnel('leaflet.markercluster', {
+        include: ['*.js'],
+        destDir: 'leaflet.markercluster'
+      })
+    );
 
-    return mergeTrees(trees);
+    trees.push(
+      debugTree(js, 'leaflet.markercluster:js')
+    );
+
+    return debugTree(mergeTrees(trees), 'mergedVendorTrees');
   },
+
+  treeForStyles(styleTree) {
+    let debugTree = BroccoliDebug.buildDebugCallback(this.name),
+        trees = [];
+
+    if (styleTree) {
+      trees.push(
+        debugTree(styleTree, 'styleTree')
+      );
+    }
+
+    let css = moduleToFunnel('leaflet.markercluster', {
+      include: ['*.css'],
+      destDir: 'leaflet.markercluster'
+    });
+
+    trees.push(
+      debugTree(css, 'leaflet.markercluster:css')
+    );
+
+    return debugTree(mergeTrees(trees), 'mergedStyleTrees');
+  }
 
 };
 
@@ -48,11 +77,4 @@ function moduleToFunnel(moduleName, opts) {
 
 function resolveModulePath(moduleName) {
   return path.dirname(require.resolve(moduleName));
-}
-
-// Checks to see whether this build is targeting FastBoot. Note that we cannot
-// check this at boot time--the environment variable is only set once the build
-// has started, which happens after this file is evaluated.
-function isFastBoot() {
-  return process.env.EMBER_CLI_FASTBOOT === 'true';
 }
