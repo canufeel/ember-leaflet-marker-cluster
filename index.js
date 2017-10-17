@@ -39,33 +39,17 @@ module.exports = {
       })
     );
 
-    trees.push(
-      debugTree(js, 'leaflet.markercluster:js')
-    );
-
-    return debugTree(mergeTrees(trees), 'mergedVendorTrees');
-  },
-
-  treeForStyles(styleTree) {
-    let debugTree = BroccoliDebug.buildDebugCallback(this.name),
-        trees = [];
-
-    if (styleTree) {
-      trees.push(
-        debugTree(styleTree, 'styleTree')
-      );
-    }
-
     let css = moduleToFunnel('leaflet.markercluster', {
       include: ['*.css'],
       destDir: 'leaflet.markercluster'
     });
 
     trees.push(
+      debugTree(js, 'leaflet.markercluster:js'),
       debugTree(css, 'leaflet.markercluster:css')
     );
 
-    return debugTree(mergeTrees(trees), 'mergedStyleTrees');
+    return debugTree(mergeTrees(trees), 'mergedVendorTrees');
   }
 
 };
