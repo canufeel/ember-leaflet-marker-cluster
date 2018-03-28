@@ -1,6 +1,6 @@
 {
   "name": "ember-leaflet-marker-cluster",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Addon for Ember-Leaflet which adds marker clusters",
   "directories": {
     "doc": "doc",

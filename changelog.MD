@@ -1,4 +1,8 @@
 
+## 0.2.0
+
+- Update `ember-cli-babel` to v6 and `ember-cli-htmlbars` to v2 [#23](https://github.com/canufeel/ember-leaflet-marker-cluster/pull/23)
+
 ## 0.1.2
 
 - Fix style dependency imports [#21](https://github.com/canufeel/ember-leaflet-marker-cluster/pull/21)
