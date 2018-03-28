@@ -51,8 +51,8 @@
   ],
   "dependencies": {
     "broccoli-debug": "^0.6.3",
-    "ember-cli-babel": "^5.1.5",
-    "ember-cli-htmlbars": "^1.0.3",
+    "ember-cli-babel": "^6.2.0",
+    "ember-cli-htmlbars": "^2.0.2",
     "fastboot-transform": "^0.1.2",
     "leaflet": "^1.0.3",
     "leaflet.markercluster": "^1.0.4"
