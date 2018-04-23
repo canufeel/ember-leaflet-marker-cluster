@@ -1,4 +1,3 @@
-/* jshint node: true */
 'use strict';
 
 const Funnel = require('broccoli-funnel');
