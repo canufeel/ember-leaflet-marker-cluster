@@ -1,3 +1,15 @@
-<h2 id="title">Welcome to Ember</h2>
-
-{{outlet}}
+<h1>Ember Leaflet Markercluster Demo</h1>
+<div class="map-demo">
+  {{#leaflet-map lat=lat lng=lng zoom=zoom maxZoom=maxZoom as |layers|}}
+    {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+      {{#marker-cluster-layer as |cluster|}}
+        {{#each markers as |someMarker|}}
+          {{#cluster.marker location=someMarker.location as |marker|}}
+            {{#marker.popup}}
+              <h4>{{someMarker.title}}</h4>
+            {{/marker.popup}}
+          {{/cluster.marker}}
+        {{/each}}
+      {{/marker-cluster-layer}}
+  {{/leaflet-map}}
+</div>
