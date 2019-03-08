@@ -1,4 +1,3 @@
-/* jshint node: true */
 'use strict';
 
 const Funnel = require('broccoli-funnel');
@@ -8,7 +7,7 @@ const fastbootTransform = require('fastboot-transform');
 const path = require('path');
 
 module.exports = {
-  name: 'ember-leaflet-marker-cluster',
+  name: require('./package').name,
 
   included(app) {
     let vendor = this.treePaths.vendor;

@@ -1,4 +1,4 @@
-# Ember-leaflet-marker-cluster
+# ember-leaflet-marker-cluster
 
 Provides Beautiful Animated Marker Clustering functionality for [Ember-Leaflet](http://ember-leaflet.com), an Ember Addon for [Leaflet](http://leafletjs.com) interactive maps.
 
