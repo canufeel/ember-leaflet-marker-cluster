@@ -5,21 +5,21 @@ import layout from '../templates/marker-cluster-layer';
 export default BaseLayer.extend(ParentMixin, {
 	layout,
 
-	leafletOptions: [
-  	'showCoverageOnHover', 'zoomToBoundsOnClick', 'spiderfyOnMaxZoom', 'removeOutsideVisibleBounds',
-  	'animate', 'animateAddingMarkers', 'disableClusteringAtZoom', 'maxClusterRadius', 'polygonOptions',
-  	'singleMarkerMode', 'spiderLegPolylineOptions', 'spiderfyDistanceMultiplier', 'iconCreateFunction'
-	],
+	leafletOptions: Object.freeze([
+    'showCoverageOnHover', 'zoomToBoundsOnClick', 'spiderfyOnMaxZoom', 'removeOutsideVisibleBounds',
+    'animate', 'animateAddingMarkers', 'disableClusteringAtZoom', 'maxClusterRadius', 'polygonOptions',
+    'singleMarkerMode', 'spiderLegPolylineOptions', 'spiderfyDistanceMultiplier', 'iconCreateFunction'
+	]),
 
-	leafletEvents: [
-  	// Marker clutster events
-  	'clusterclick', 'clusterdblclick', 'clustermousedown', 'clustermouseover', 'clustermouseout',
-  	'clustercontextmenu', 'clusteradd', 'clusterremove', 'animationend', 'spiderfied', 'unspiderfied',
+	leafletEvents: Object.freeze([
+    // Marker clutster events
+    'clusterclick', 'clusterdblclick', 'clustermousedown', 'clustermouseover', 'clustermouseout',
+    'clustercontextmenu', 'clusteradd', 'clusterremove', 'animationend', 'spiderfied', 'unspiderfied',
     // Marker events
-  	'click', 'dblclick', 'mousedown', 'mouseover', 'mouseout',
+    'click', 'dblclick', 'mousedown', 'mouseover', 'mouseout',
     'contextmenu', 'dragstart', 'drag', 'dragend', 'move', 'remove', 'add',
     'popupopen', 'popupclose'
-	],
+	]),
 
 	createLayer() {
 		return this.L.markerClusterGroup(...this.get('requiredOptions'), this.get('options'));
