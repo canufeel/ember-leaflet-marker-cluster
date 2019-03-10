@@ -2977,7 +2977,7 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.2.0, ember-cli-babel@^7.4.1, ember-cli-babel@^7.4.3, ember-cli-babel@^7.5.0:
+ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.2.0, ember-cli-babel@^7.4.3, ember-cli-babel@^7.5.0:
   version "7.5.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.5.0.tgz#af654dcef23630391d2efe85aaa3bdf8b6ca17b7"
   integrity sha512-wWXqPPQNRxCtEHvYaLBNiIVgCVCy8YqZ0tM8Dpql1D5nGnPDbaK073sS1vlOYBP7xe5Ab2nXhvQkFwUxFacJ2g==
@@ -3172,7 +3172,7 @@ ember-cli-version-checker@^2.1.2:
     resolve "^1.3.3"
     semver "^5.3.0"
 
-ember-cli-version-checker@^3.0.0, ember-cli-version-checker@^3.0.1:
+ember-cli-version-checker@^3.0.0, ember-cli-version-checker@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-3.1.2.tgz#baee5cc621d5259d9011b5ef60fe6fbe61bd57c7"
   integrity sha512-SNY7757cqj5GmES9dlWb43aWoGUcc+keniu+Rvsl/C/TnSK99edgL6eG4+Zr0ESeJ1hEcI3UrHN/8GIcK5eJUQ==
@@ -3322,22 +3322,31 @@ ember-invoke-action@^1.5.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-leaflet@^3.0.18:
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/ember-leaflet/-/ember-leaflet-3.0.18.tgz#89f820de553e07dc37b4a670250fc195505346ec"
-  integrity sha512-nCiM4A++VuuPAtrBuqyiqLgDA+WbB+C7LdKe0Etd8akxNSlQKUk/E2gtW1FRArfmAFzsjq+BmL/FEZxD/h0mDg==
+ember-leaflet@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/ember-leaflet/-/ember-leaflet-3.1.1.tgz#51d27f5b9d7e55f84b07e35c0c67f01901ecc182"
+  integrity sha512-CzwWPUWuKa8pe5q2T6G+M7URdEoGlmKHUG46JOAFWTykiL8CJzEXT8oTIsMKFnXA1uYC2+jRkkhZuSYFYeE6tQ==
   dependencies:
-    broccoli-funnel "^2.0.1"
+    broccoli-funnel "^2.0.2"
     broccoli-merge-trees "^3.0.2"
-    ember-cli-babel "^7.4.1"
+    ember-cli-babel "^7.5.0"
     ember-cli-htmlbars "^3.0.1"
-    ember-cli-version-checker "^3.0.1"
+    ember-cli-version-checker "^3.1.2"
     ember-composability-tools "^0.0.11"
     ember-get-config "^0.2.4"
     ember-in-element-polyfill "^0.1.3"
     ember-invoke-action "^1.5.1"
+    ember-let-polyfill "^0.1.0"
     fastboot-transform "^0.1.3"
     resolve "^1.10.0"
+
+ember-let-polyfill@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/ember-let-polyfill/-/ember-let-polyfill-0.1.0.tgz#9d37c610441eb41eaaea3a6782bbd4203f5cf0a9"
+  integrity sha512-olLHpS7JnqZcfyYRXcdLATYwDIopKA+ZzI8xswzCIcBYoRgoUJY7E/eW84Unu8ea1jtr/Unx+dQrsU+NrNSoBg==
+  dependencies:
+    ember-cli-babel "^6.16.0"
+    ember-cli-version-checker "^2.1.2"
 
 ember-load-initializers@^2.0.0:
   version "2.0.0"

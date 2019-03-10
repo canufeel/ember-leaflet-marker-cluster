@@ -1,3 +1,7 @@
+## 0.3.0
+
+- update ember-cli project and updates all dependencies, including `leaflet.markercluster`, moves leaflet out of dependencies and into peerDependencies, just like ember-leaflet does [#25](https://github.com/canufeel/ember-leaflet-marker-cluster/pull/25)
+- register the `marker-cluster` component on ember-leaflet service [#26](https://github.com/canufeel/ember-leaflet-marker-cluster/pull/26)
 
 ## 0.2.0
 
