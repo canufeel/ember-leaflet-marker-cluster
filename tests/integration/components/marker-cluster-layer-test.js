@@ -35,7 +35,7 @@ module('Integration | Component | marker cluster layer', function(hooks) {
     await render(hbs`
       <LeafletMap @zoom={{zoom}} @center={{center}} @maxZoom={{25}} as |layers|>
         <layers.marker-cluster as |cluster|>
-          <cluster.marker @location={{markerCenter}} @icon={{icon}}/>
+          <cluster.marker @location={{markerCenter}} @icon={{icon}} />
         </layers.marker-cluster>
       </LeafletMap>
     `);
@@ -52,7 +52,7 @@ module('Integration | Component | marker cluster layer', function(hooks) {
     await render(hbs`
       <LeafletMap @zoom={{zoom}} @center={{center}} @maxZoom={{25}} as |layers|>
         <layers.marker-cluster @maxClusterRadius={{100}} as |cluster|>
-          <cluster.marker @location={{markerCenter}} @icon={{icon}}/>
+          <cluster.marker @location={{markerCenter}} @icon={{icon}} />
         </layers.marker-cluster>
       </LeafletMap>
     `);
