@@ -1,19 +1,21 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import MarkerClusterLayerComponent from 'ember-leaflet-marker-cluster/components/marker-cluster-layer';
 import locations from '../../helpers/locations';
-/* globals L */
+/* global L */
 
-//Needed to silence leaflet autodetection error
+// Needed to silence leaflet autodetection error
 L.Icon.Default.imagePath = 'some-path';
 
 let cluster;
 
-moduleForComponent('marker-cluster-layer', 'Integration | Component | marker cluster layer', {
-  integration: true,
-  beforeEach() {
+module('Integration | Component | marker cluster layer', function(hooks) {
+  setupRenderingTest(hooks);
 
-    this.register('component:marker-cluster-layer', MarkerClusterLayerComponent.extend({
+  hooks.beforeEach(function() {
+    this.owner.register('component:marker-cluster-layer', MarkerClusterLayerComponent.extend({
       init() {
         this._super(...arguments);
         cluster = this;
@@ -22,40 +24,39 @@ moduleForComponent('marker-cluster-layer', 'Integration | Component | marker clu
 
     this.set('center', locations.nyc);
     this.set('zoom', 13);
-  },
-  afterEach() {
-  }
-});
+  });
 
-test('it renders', function(assert) {
-  this.set('markerCenter', locations.nyc);
-  this.set('icon', L.divIcon({className: 'my-div-icon'}));
+  test('it renders', async function(assert) {
+    this.set('markerCenter', locations.nyc);
+    this.set('icon', L.divIcon({ className: 'my-div-icon' }));
 
-  // this maxZoom property here is for purpose. Otherwise
-  // Leaflet.markercluster causes some weird behaviour on addlayer.
-  this.render(hbs`
-    {{#leaflet-map zoom=zoom center=center maxZoom=25}}
-      {{#marker-cluster-layer}}
-        {{marker-layer location=markerCenter icon=icon}}
-      {{/marker-cluster-layer}}
-    {{/leaflet-map}}
+    // this maxZoom property here is for purpose. Otherwise
+    // Leaflet.markercluster causes some weird behaviour on addlayer.
+    await render(hbs`
+      <LeafletMap @zoom={{zoom}} @center={{center}} @maxZoom={{25}} as |layers|>
+        <layers.marker-cluster as |cluster|>
+          <cluster.marker @location={{markerCenter}} @icon={{icon}}/>
+        </layers.marker-cluster>
+      </LeafletMap>
     `);
 
-  assert.equal(cluster.childComponents.length, 1);
-});
+    assert.equal(cluster.childComponents.length, 1);
+  });
 
-test('test leaflet marker cluster options are set on marker cluster layer', function(assert) {
-  this.set('markerCenter', locations.nyc);
-  this.set('icon', L.divIcon({className: 'my-div-icon'}));
+  test('test leaflet marker cluster options are set on marker cluster layer', async function(assert) {
+    this.set('markerCenter', locations.nyc);
+    this.set('icon', L.divIcon({ className: 'my-div-icon' }));
 
-  // this maxZoom property here is for purpose. Otherwise
-  // Leaflet.markercluster causes some weird behaviour on addlayer.
-  this.render(hbs`
-    {{#leaflet-map zoom=zoom center=center maxZoom=25}}
-      {{#marker-cluster-layer maxClusterRadius=100}}
-        {{marker-layer location=markerCenter icon=icon}}
-      {{/marker-cluster-layer}}
-    {{/leaflet-map}}
+    // this maxZoom property here is for purpose. Otherwise
+    // Leaflet.markercluster causes some weird behaviour on addlayer.
+    await render(hbs`
+      <LeafletMap @zoom={{zoom}} @center={{center}} @maxZoom={{25}} as |layers|>
+        <layers.marker-cluster @maxClusterRadius={{100}} as |cluster|>
+          <cluster.marker @location={{markerCenter}} @icon={{icon}}/>
+        </layers.marker-cluster>
+      </LeafletMap>
     `);
-  assert.equal(cluster._layer.options.maxClusterRadius, 100);  
+
+    assert.equal(cluster._layer.options.maxClusterRadius, 100);
+  });
 });
