@@ -1,35 +1,36 @@
 # ember-leaflet-marker-cluster
 
-Provides Beautiful Animated Marker Clustering functionality for [Ember-Leaflet](http://ember-leaflet.com), an Ember Addon for [Leaflet](http://leafletjs.com) interactive maps.
+Provides Beautiful Animated Marker Clustering functionality for [Ember-Leaflet](https://miguelcobain.github.io/ember-leaflet/), an Ember Addon for [Leaflet](http://leafletjs.com) interactive maps.
 
 This plugin is based on a JS library [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster) and basically wraps it into ember component for usage in HTMLbars templates.
 
 ## Installation
 
-* `ember install ember-leaflet-marker-cluster`
+```bash
+ember install ember-leaflet-marker-cluster
+```
 
 ## Using the plugin
 
-Please be advised that for some particular reason Leaflet Marker Cluster breaks if the component loads with some markers inside the marker cluster in place without `maxZoom` property provided on `{{leaflet-map}}` like so: `{{leaflet-map maxZoom=25}}`.
+Please be advised that for some particular reason Leaflet Marker Cluster breaks if the component loads with some markers inside the marker cluster in place without `@maxZoom` argument provided to `<LeafletMap>` like so: `<LeafletMap @maxZoom={{25}}>`.
 
-```handlebars
+```hbs
+<LeafletMap @lat={{lat}} @lng={{lng}} @zoom={{zoom}} as |layers|>
 
-{{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
+  <layers.tile @url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
 
-  {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
-
-  {{#marker-cluster-layer as |cluster|}}
-    {{#each markers as |someMarker|}}
-      {{#cluster.marker location=someMarker.location as |marker|}}
-        {{#marker.popup}}
-          <h3>{{someMarker.title}}</h3>
-          {{someMarker.description}}
-        {{/marker.popup}}
-      {{/cluster.marker}}
+  <layers.marker-cluster as |cluster|>
+    {{#each markers as |m|}}
+      <cluster.marker @location={{m.location}} as |marker|>
+        <marker.popup>
+          <h3>{{m.title}}</h3>
+          {{m.description}}
+        </marker.popup>
+      </cluster.marker>
     {{/each}}
-  {{/marker-cluster-layer}}
+  </layers.marker-cluster>
 
-{{/leaflet-map}}
+</LeafletMap>
 ```
 
 ## Running
