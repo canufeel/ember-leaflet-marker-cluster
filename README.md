@@ -49,3 +49,15 @@ Please be advised that for some particular reason Leaflet Marker Cluster breaks 
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v3.16 or above
+* Ember CLI v2.13 or above
+* Node.js v10 or above
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).

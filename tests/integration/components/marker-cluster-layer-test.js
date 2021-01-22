@@ -11,22 +11,25 @@ L.Icon.Default.imagePath = 'some-path';
 
 let cluster;
 
-module('Integration | Component | marker cluster layer', function(hooks) {
+module('Integration | Component | marker cluster layer', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
-    this.owner.register('component:marker-cluster-layer', MarkerClusterLayerComponent.extend({
-      init() {
-        this._super(...arguments);
-        cluster = this;
+  hooks.beforeEach(function () {
+    this.owner.register(
+      'component:marker-cluster-layer',
+      class extends MarkerClusterLayerComponent {
+        constructor() {
+          super(...arguments);
+          cluster = this;
+        }
       }
-    }));
+    );
 
     this.set('center', locations.nyc);
     this.set('zoom', 13);
   });
 
-  test('it renders', async function(assert) {
+  test('it renders', async function (assert) {
     this.set('markerCenter', locations.nyc);
     this.set('icon', L.divIcon({ className: 'my-div-icon' }));
 
@@ -43,7 +46,7 @@ module('Integration | Component | marker cluster layer', function(hooks) {
     assert.equal(cluster.childComponents.length, 1);
   });
 
-  test('test leaflet marker cluster options are set on marker cluster layer', async function(assert) {
+  test('test leaflet marker cluster options are set on marker cluster layer', async function (assert) {
     this.set('markerCenter', locations.nyc);
     this.set('icon', L.divIcon({ className: 'my-div-icon' }));
 

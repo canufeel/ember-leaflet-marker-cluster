@@ -23,24 +23,22 @@ module.exports = {
 
   treeForVendor(vendorTree) {
     let debugTree = BroccoliDebug.buildDebugCallback(this.name),
-        trees = [];
+      trees = [];
 
     if (vendorTree) {
-      trees.push(
-        debugTree(vendorTree, 'vendorTree')
-      );
+      trees.push(debugTree(vendorTree, 'vendorTree'));
     }
 
     let js = fastbootTransform(
       moduleToFunnel('leaflet.markercluster', {
         include: ['*.js'],
-        destDir: 'leaflet.markercluster'
+        destDir: 'leaflet.markercluster',
       })
     );
 
     let css = moduleToFunnel('leaflet.markercluster', {
       include: ['*.css'],
-      destDir: 'leaflet.markercluster'
+      destDir: 'leaflet.markercluster',
     });
 
     trees.push(
@@ -49,8 +47,7 @@ module.exports = {
     );
 
     return debugTree(mergeTrees(trees), 'mergedVendorTrees');
-  }
-
+  },
 };
 
 function moduleToFunnel(moduleName, opts) {
