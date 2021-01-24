@@ -49,6 +49,11 @@ export default class MarkerClusterLayer extends BaseLayer {
     'popupclose',
   ];
 
+  componentsToYield = [
+    ...this.componentsToYield,
+    { name: 'marker-layer', as: 'marker' },
+  ];
+
   createLayer() {
     return this.L.markerClusterGroup(...this.requiredOptions, this.options);
   }

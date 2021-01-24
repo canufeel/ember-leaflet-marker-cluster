@@ -1,5 +1,16 @@
-{{page-title "Dummy"}}
+<LeafletMap @lat={{this.lat}} @lng={{this.lng}} @zoom={{this.zoom}} as |layers|>
 
-<h2 id="title">Welcome to Ember</h2>
+  <layers.tile @url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
 
-{{outlet}}
+  <layers.marker-cluster as |cluster|>
+    {{#each this.markers as |m|}}
+      <cluster.marker @location={{m.location}} as |marker|>
+        <marker.popup>
+          <h3>{{m.title}}</h3>
+          {{m.description}}
+        </marker.popup>
+      </cluster.marker>
+    {{/each}}
+  </layers.marker-cluster>
+
+</LeafletMap>
