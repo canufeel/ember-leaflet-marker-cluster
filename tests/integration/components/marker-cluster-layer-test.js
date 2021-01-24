@@ -31,31 +31,29 @@ module('Integration | Component | marker cluster layer', function (hooks) {
 
   test('it renders', async function (assert) {
     this.set('markerCenter', locations.nyc);
-    this.set('icon', L.divIcon({ className: 'my-div-icon' }));
 
     // this maxZoom property here is for purpose. Otherwise
     // Leaflet.markercluster causes some weird behaviour on addlayer.
     await render(hbs`
-      <LeafletMap @zoom={{zoom}} @center={{center}} @maxZoom={{25}} as |layers|>
+      <LeafletMap @zoom={{this.zoom}} @center={{this.center}} @maxZoom={{25}} as |layers|>
         <layers.marker-cluster as |cluster|>
-          <cluster.marker @location={{markerCenter}} @icon={{icon}} />
+          <cluster.marker @location={{this.markerCenter}} @icon={{icon (hash className="my-div-icon")}} />
         </layers.marker-cluster>
       </LeafletMap>
     `);
 
-    assert.equal(cluster.childComponents.length, 1);
+    assert.equal(cluster._layer.getLayers().length, 1);
   });
 
   test('test leaflet marker cluster options are set on marker cluster layer', async function (assert) {
     this.set('markerCenter', locations.nyc);
-    this.set('icon', L.divIcon({ className: 'my-div-icon' }));
 
     // this maxZoom property here is for purpose. Otherwise
     // Leaflet.markercluster causes some weird behaviour on addlayer.
     await render(hbs`
-      <LeafletMap @zoom={{zoom}} @center={{center}} @maxZoom={{25}} as |layers|>
+      <LeafletMap @zoom={{this.zoom}} @center={{this.center}} @maxZoom={{25}} as |layers|>
         <layers.marker-cluster @maxClusterRadius={{100}} as |cluster|>
-          <cluster.marker @location={{markerCenter}} @icon={{icon}} />
+          <cluster.marker @location={{this.markerCenter}} @icon={{icon (hash className="my-div-icon")}} />
         </layers.marker-cluster>
       </LeafletMap>
     `);
