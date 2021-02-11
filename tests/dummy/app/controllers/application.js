@@ -10,18 +10,18 @@ export default class ApplicationController extends Controller {
     {
       title: 'TD Bank',
       description: '258 Broadway, New York, NY 10007, EUA',
-      location: [40.713687, -74.007068]
+      location: [40.713687, -74.007068],
     },
     {
       title: 'City Hall',
       description: 'New York, NY 10007',
-      location: [40.713545, -74.006707]
+      location: [40.713545, -74.006707],
     },
     {
       title: 'Chase Bank',
       description: '253 Broadway, New York, NY 10007, EUA',
-      location: [40.713316, -74.007386]
-    }
+      location: [40.713316, -74.007386],
+    },
   ];
 }
 // END-SNIPPET
