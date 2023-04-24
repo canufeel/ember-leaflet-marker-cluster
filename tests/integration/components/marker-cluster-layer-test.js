@@ -38,7 +38,7 @@ module('Integration | Component | marker cluster layer', function (hooks) {
       </LeafletMap>
     `);
 
-    assert.equal(cluster._layer.getLayers().length, 1);
+    assert.strictEqual(cluster._layer.getLayers().length, 1);
   });
 
   test('test leaflet marker cluster options are set on marker cluster layer', async function (assert) {
@@ -52,6 +52,6 @@ module('Integration | Component | marker cluster layer', function (hooks) {
       </LeafletMap>
     `);
 
-    assert.equal(cluster._layer.options.maxClusterRadius, 100);
+    assert.strictEqual(cluster._layer.options.maxClusterRadius, 100);
   });
 });

@@ -6,7 +6,7 @@ export function initialize(appInstance) {
   if (emberLeafletService) {
     emberLeafletService.registerComponent('marker-cluster-layer', {
       as: 'marker-cluster',
-      component: MarkerClusterLayer
+      component: MarkerClusterLayer,
     });
   }
 }

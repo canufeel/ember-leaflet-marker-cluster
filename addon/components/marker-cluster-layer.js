@@ -54,7 +54,11 @@ export default class MarkerClusterLayer extends BaseLayer {
   componentsToYield = [
     ...this.componentsToYield,
     { name: 'marker-layer', as: 'marker', component: MarkerLayer },
-    { name: 'circle-marker-layer', as: 'circle-marker', component: CircleLayer },
+    {
+      name: 'circle-marker-layer',
+      as: 'circle-marker',
+      component: CircleLayer,
+    },
   ];
 
   createLayer() {
