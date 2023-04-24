@@ -15,12 +15,12 @@ ember install ember-leaflet-marker-cluster
 Please be advised that for some particular reason Leaflet Marker Cluster breaks if the component loads with some markers inside the marker cluster in place without `@maxZoom` argument provided to `<LeafletMap>` like so: `<LeafletMap @maxZoom={{25}}>`.
 
 ```hbs
-<LeafletMap @lat={{lat}} @lng={{lng}} @zoom={{zoom}} as |layers|>
+<LeafletMap @lat={{this.lat}} @lng={{this.lng}} @zoom={{this.zoom}} as |layers|>
 
   <layers.tile @url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"/>
 
   <layers.marker-cluster as |cluster|>
-    {{#each markers as |m|}}
+    {{#each this.markers as |m|}}
       <cluster.marker @location={{m.location}} as |marker|>
         <marker.popup>
           <h3>{{m.title}}</h3>
