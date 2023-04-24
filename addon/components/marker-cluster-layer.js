@@ -1,4 +1,6 @@
 import BaseLayer from 'ember-leaflet/components/base-layer';
+import MarkerLayer from 'ember-leaflet/components/marker-layer';
+import CircleLayer from 'ember-leaflet/components/circle-layer';
 
 export default class MarkerClusterLayer extends BaseLayer {
   leafletOptions = [
@@ -51,8 +53,8 @@ export default class MarkerClusterLayer extends BaseLayer {
 
   componentsToYield = [
     ...this.componentsToYield,
-    { name: 'marker-layer', as: 'marker' },
-    { name: 'circle-marker-layer', as: 'circle-marker' },
+    { name: 'marker-layer', as: 'marker', component: MarkerLayer },
+    { name: 'circle-marker-layer', as: 'circle-marker', component: CircleLayer },
   ];
 
   createLayer() {

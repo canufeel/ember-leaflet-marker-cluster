@@ -11,20 +11,17 @@ L.Icon.Default.imagePath = 'some-path';
 
 let cluster;
 
+// monkey patch `didCreateLayer` method to get a reference to the instance
+let oldDidCreateLayer = MarkerClusterLayerComponent.prototype.didCreateLayer;
+MarkerClusterLayerComponent.prototype.didCreateLayer = function () {
+  cluster = this;
+  return oldDidCreateLayer.apply(this, arguments);
+};
+
 module('Integration | Component | marker cluster layer', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
-    this.owner.register(
-      'component:marker-cluster-layer',
-      class extends MarkerClusterLayerComponent {
-        constructor() {
-          super(...arguments);
-          cluster = this;
-        }
-      }
-    );
-
     this.center = locations.nyc;
     this.zoom = 13;
     this.markerCenter = locations.nyc;
